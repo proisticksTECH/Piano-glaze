@@ -49,6 +49,7 @@
     #launch {
       background-color: rgba(0, 0, 0, 0.7);
       cursor: pointer;
+      display: none !important;
     }
     .green-flag {
       width: 80px;
@@ -146,7 +147,7 @@
 <body>
   <div id="app"></div>
 
-  <div id="launch" class="screen" hidden title="Click to start" style="display:none !important;">
+  <div id="launch" class="screen" hidden title="Click to start">
   </div>
 
   <div id="loading" class="screen">
@@ -166,3 +167,25 @@
 
   <script>/*!
 !function(t){function A(A){for(var e,r,n=A[0],o=A[1],s=0,l=[];s<n.length;s++)r=n[s],Object.prototype.hasOwnProperty.call(i,r)&&i[r]&&l.push(i[r][0]),i[r]=0;for(e in o)Object.prototype.hasOwnPrope[...
+  </script>
+
+  <script>
+    // Auto-start the project when it's ready
+    window.addEventListener('load', function() {
+      // Give the Scratch VM a moment to initialize
+      setTimeout(function() {
+        // Hide the launch button
+        var launchDiv = document.getElementById('launch');
+        if (launchDiv) {
+          launchDiv.setAttribute('hidden', '');
+        }
+        
+        // Auto-start by triggering green flag
+        if (window.vm) {
+          window.vm.greenFlag();
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>
